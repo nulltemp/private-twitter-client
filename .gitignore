@@ -1,0 +1,5 @@
+.metadata/
+.recommenders/
+server/bin/
+server/src/main/resources/twitter4j.properties
+server/src/main/resources/application.properties
