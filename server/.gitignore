@@ -30,3 +30,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+application.properties
+twitter4j.properties
