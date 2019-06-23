@@ -6,6 +6,11 @@
           {{ item.text }}
         </v-card-text>
       </v-card>
+      <v-card v-for="(list, index) in lists" :key="index">
+        <v-card-text>
+          {{ list }}
+        </v-card-text>
+      </v-card>
     </v-flex>
   </v-layout>
 </template>
@@ -14,13 +19,16 @@
 export default {
   data() {
     return {
-      items: []
+      items: [],
+      lists: []
     }
   },
   async asyncData({ app }) {
     const response = await app.$axios.get('http://localhost:8080/api/timeline')
+    const listRes = await app.$axios.get('http://localhost:8080/api/userlist')
     return {
-      items: response.data
+      items: response.data,
+      lists: listRes.data.map(data => data.name)
     }
   }
 }
