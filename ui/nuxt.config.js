@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config({ path: '.env.dev' })
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -45,7 +46,9 @@ export default {
     '@nuxtjs/vuetify',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/auth'
   ],
   /*
    ** Axios module configuration
@@ -75,5 +78,33 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  dotenv: {},
+  auth: {
+    redirect: {
+      login: '/',
+      logout: '/',
+      callback: false,
+      home: '/home'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: `${process.env.BASE_URL}/api/auth/login`,
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: {
+            url: `${process.env.BASE_URL}/api/auth/logout`,
+            method: 'post'
+          },
+          user: false
+        }
+      }
+    }
+  },
+  router: {
+    middleware: ['auth']
   }
 }
