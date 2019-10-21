@@ -32,4 +32,7 @@ out/
 .vscode/
 
 application.properties
+application.yml
 twitter4j.properties
+
+bin/

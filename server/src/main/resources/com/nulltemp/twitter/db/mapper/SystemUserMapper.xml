@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nulltemp.twitter.db.mapper.SystemUserMapper">
+    <select id="findByEmail" resultType="com.nulltemp.twitter.db.dto.SystemUser">
+        select * from system_users where email = #{email} and deleted_at is null
+    </select>
+    <update id="saveToken">
+        update system_users set token = #{token}, updated_at = now() where id = #{id}
+    </update>
+</mapper>
