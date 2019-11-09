@@ -17,13 +17,17 @@ export default {
   },
   methods: {
     async authenticate() {
-      await this.$auth.loginWith('local', {
-        data: {
-          email: this.email,
-          password: this.password
-        }
-      })
-      this.$router.push('/home')
+      try {
+        await this.$auth.loginWith('local', {
+          params: {
+            email: this.email,
+            password: this.password
+          }
+        })
+        this.$router.push('/home')
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }

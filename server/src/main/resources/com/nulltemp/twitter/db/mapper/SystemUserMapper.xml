@@ -4,7 +4,4 @@
     <select id="findByEmail" resultType="com.nulltemp.twitter.db.dto.SystemUser">
         select * from system_users where email = #{email} and deleted_at is null
     </select>
-    <update id="saveToken">
-        update system_users set token = #{token}, updated_at = now() where id = #{id}
-    </update>
 </mapper>

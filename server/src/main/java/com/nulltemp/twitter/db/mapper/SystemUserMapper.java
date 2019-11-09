@@ -7,6 +7,4 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SystemUserMapper {
 	SystemUser findByEmail(@Param("email") String email);
-
-	int saveToken(@Param("id") long id, @Param("token") String token);
 }
